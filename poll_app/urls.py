@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    #Point to the root URLconf at the polls.urls module.
+    #The include() function allows referencing other URLconfs. Note that the regular expressions for the include() 
+    #function doesn't have a $ (end-of-string match character) but rather a trailing slash. 
+    url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
 ]
