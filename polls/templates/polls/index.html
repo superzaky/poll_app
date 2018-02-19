@@ -1,0 +1,16 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+        
+        <!-- The problem with this hardcoded, tightly-coupled approach is that it becomes challenging to change 
+        URLs on projects with a lot of templates. However, since you defined the name argument in the 
+        url <haakje open en sluiten hier> functions in the polls.urls module, you can remove a reliance on 
+        specific URL paths defined in your url<haakje open en sluiten hier> configurations by using the
+        <brace open hier>% url %<brace sluiten hier> template tag: -->
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
