@@ -6,7 +6,9 @@ app_name = 'polls'
 #Our URLconf to map a view to a URL so that we can call a view. 
 urlpatterns = [
     # ex: /polls/
-    url(r'^$', views.index, name='index'),
+#     url(r'^$', views.index, name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
+
     #When somebody requests a page from your website say, '/polls/34/', Django will load the
     # mysite.urls Python module because it's pointed to by the 'ROOT_URLCONF' setting. It finds the 
     #variable named urlpatterns and traverses the regular expressions in order. After finding the
@@ -25,12 +27,16 @@ urlpatterns = [
     
     # the 'name' value as called by the {% url %} template tag
     # ex: /polls/5/
-    url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
+#     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    
     # added the word 'specifics'
     #url(r'^specifics/(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     
     # ex: /polls/5/results/
-    url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
+#     url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
+    url(r'^(?P<pk>[0-9]+)/results/$', views.ResultsView.as_view(), name='results'),
+    
     # ex: /polls/5/vote/
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 ]
