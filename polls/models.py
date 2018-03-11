@@ -20,7 +20,10 @@ class Question(models.Model):
         # return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
-
+    #Giving a few attributes to the was_published_recently() for the admin page.
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Published recently?'
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Choice(models.Model):
